@@ -235,7 +235,8 @@ class _AdFormPageState extends State<AdFormPage> {
     String title = _titleController.text;
     String description = _descriptionController.text;
     String transactionType = _transactionType;
-
+    DateTime date = DateTime.now();
+    String time = "${date.hour}:${date.minute}:${date.second}";
 
     FirebaseFirestore.instance.collection('ads').add({
       'adType': adType,
@@ -244,7 +245,7 @@ class _AdFormPageState extends State<AdFormPage> {
       'transactionType': transactionType,
       'imagePath': _imagePath,
       'uploaderEmail': currentUserEmail,
-      'timestamp': DateTime.now().toString(),
+      'timestamp': time,
     }).then((value) {
     showDialog(
       context: context,
