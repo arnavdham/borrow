@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AdTile extends StatefulWidget {
   final String uploaderEmail;
-  // final String timestamp;
+   final String timestamp;
   final String title;
   final String transactionType;
   final String description;
@@ -11,7 +11,7 @@ class AdTile extends StatefulWidget {
 
   AdTile({
     required this.uploaderEmail,
-    // required this.timestamp,
+    required this.timestamp,
     required this.title,
     required this.transactionType,
     required this.description,
@@ -47,7 +47,7 @@ class _AdTileState extends State<AdTile> {
                 style: TextStyle(color: Colors.white),
               ),
               Text(
-                'few hours ago',
+                DateTime.now().toString(),
                 // widget.timestamp,
                 style: TextStyle(color: Colors.white),
               ),

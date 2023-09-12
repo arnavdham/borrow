@@ -47,7 +47,7 @@ class _LendScreenState extends State<LendScreen> {
                 if (adData != null) {
                   return AdTile(
                     uploaderEmail: adData['uploaderEmail'] ?? '',
-                    //timestamp: adData['timestamp'] ?? '',
+                    timestamp: adData['timestamp'] ?? '',
                     title: adData['title'] ?? '',
                     transactionType: adData['transactionType'] ?? '',
                     description: adData['description'] ?? '',

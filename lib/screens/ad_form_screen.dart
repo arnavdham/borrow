@@ -246,7 +246,6 @@ class _AdFormPageState extends State<AdFormPage> {
       'uploaderEmail': currentUserEmail,
       'timestamp': DateTime.now().toString(),
     }).then((value) {
-    // Optional: Show a confirmation dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
