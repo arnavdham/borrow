@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
 
   void _signOut() async {
     try {
       await FirebaseAuth.instance.signOut();
+      await GoogleSignIn().signOut();
     } catch (e) {
       print('Error signing out: $e');
     }
@@ -20,7 +23,7 @@ class SideBar extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
               accountName: Text('Hi Username!'),
-              accountEmail: Text('example@gmail.com'),
+              accountEmail: Text('Example@gmail.com'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.asset('assets/final.jpg',

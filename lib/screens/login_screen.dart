@@ -44,6 +44,7 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 25.0,
                 ),
               ),
+              const SizedBox(height: 50.0,),
               ElevatedButton(
                 onPressed: () async {
                   final user = await signInWithGoogle();

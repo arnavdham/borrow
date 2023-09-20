@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:borrow/screens/chat_screen.dart';
+
 
 class AdTile extends StatefulWidget {
   final String uploaderEmail;
-   final String timestamp;
+  final String timestamp;
   final String title;
   final String transactionType;
   final String description;
   final String imagePath;
-
 
   AdTile({
     required this.uploaderEmail,
@@ -22,12 +23,25 @@ class AdTile extends StatefulWidget {
   State<AdTile> createState() => _AdTileState();
 }
 
+
+
 class _AdTileState extends State<AdTile> {
-  bool bookmarked=false;
+  bool bookmarked = false;
+
+  void openChat() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChatPage(
+          receiveruserEmail: widget.uploaderEmail,
+          receiverUserID: widget.timestamp,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: EdgeInsets.all(8.0),
       padding: EdgeInsets.all(8.0),
@@ -79,7 +93,10 @@ class _AdTileState extends State<AdTile> {
                         children: [
                           Text(
                             widget.title,
-                            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
                           ),
                           Text(
                             widget.transactionType,
@@ -104,16 +121,18 @@ class _AdTileState extends State<AdTile> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: (){setState(() {
-                  bookmarked=!bookmarked;
-                });},
+                onPressed: () {
+                  setState(() {
+                    bookmarked = !bookmarked;
+                  });
+                },
                 icon: Icon(
                   bookmarked ? Icons.bookmark : Icons.bookmark_border,
                   color: Colors.white,
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: openChat,
                 icon: Icon(
                   Icons.chat,
                   color: Colors.white,
@@ -126,4 +145,3 @@ class _AdTileState extends State<AdTile> {
     );
   }
 }
-
