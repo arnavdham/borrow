@@ -44,16 +44,17 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildUserListItem(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-    List<String> userIds = [
-      _auth.currentUser!.uid,
-      data['uid'],
-    ];
-    userIds.sort();
-    String chatRoomId = userIds.join("_");
+
     if (_auth.currentUser!.email != data['email']) {
       return ListTile(
         title: Text(data['email']),
         onTap: () {
+          List<String> userIds = [
+            _auth.currentUser!.uid,
+            data['uid'],
+          ];
+          userIds.sort();
+          String chatRoomId = userIds.join("_");
           Navigator.push(
             context,
             MaterialPageRoute(

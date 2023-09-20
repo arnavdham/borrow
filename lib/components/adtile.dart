@@ -32,7 +32,7 @@ class _AdTileState extends State<AdTile> {
   void openChat() {
     List<String> userIds = [
       FirebaseAuth.instance.currentUser!.uid,
-      widget.timestamp,
+      widget.uploaderEmail,
     ];
     userIds.sort();
     String chatRoomId = userIds.join("_");
