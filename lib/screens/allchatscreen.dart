@@ -6,14 +6,12 @@ import 'chat_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +50,23 @@ class _HomePageState extends State<HomePage> {
       return ListTile(
         title: Text(data['email']),
         onTap: () {
+          List<String> userIds = [
+            _auth.currentUser!.uid,
+            data['uid'],
+          ];
+          userIds.sort();
+          String chatRoomId = userIds.join("_");
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChatPage(receiveruserEmail: data['email'],
-                receiverUserID: data['uid'],),
+              builder: (context) => ChatPage(
+                receiveruserEmail: data['email'],
+                receiverUserID: chatRoomId,
+              ),
             ),
           );
         },
+
       );
     }
     else {

@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'borrow_screeen.dart';
+
 
 
 class LoginScreen extends StatelessWidget {
@@ -88,11 +90,32 @@ class LoginScreen extends StatelessWidget {
       final UserCredential userCredential =
       await FirebaseAuth.instance.signInWithCredential(credential);
 
-      return userCredential.user;
+      User? user = userCredential.user;
+      if (user != null) {
+        await addUserToFirestore(user);
+      }
+
+      return user;
     } catch (error) {
       // Handle and log the error
       print("Error signing in with Google: $error");
       return null;
     }
   }
+  Future<void> addUserToFirestore(User user) async {
+    try {
+      String uid = user.uid;
+      String email = user.email ?? "";
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      await firestore.collection('users').doc(uid).set({
+        'email': email,
+        'uid': uid,
+        // Add any other fields you want to store
+      });
+    } catch (error) {
+      // Handle and log the error
+      print("Error adding user to Firestore: $error");
+    }
+}
 }
