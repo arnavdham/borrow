@@ -1,5 +1,6 @@
 import 'package:borrow/components/adtile.dart';
 import 'package:borrow/components/firebase_service.dart';
+import 'package:borrow/screens/allchatscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:borrow/screens/side_bar.dart';
@@ -25,7 +26,13 @@ class _BorrowScreenState extends State<BorrowScreen> {
           title: Center(child: Text('Borrow Requests')),
 
           actions: [
-            IconButton(onPressed: null, icon: const Icon(Icons.chat,color: Colors.white,)),
+            IconButton(onPressed: (){
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage()
+              ),
+            );}, icon: const Icon(Icons.chat,color: Colors.white,)),
           ],
         ),
      body:FutureBuilder<QuerySnapshot>(

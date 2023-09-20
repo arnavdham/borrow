@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:borrow/screens/side_bar.dart';
 import 'package:borrow/components/ad.dart';
+import 'allchatscreen.dart';
 
 
 
@@ -28,7 +29,13 @@ class _LendScreenState extends State<LendScreen> {
         title: Center(child: Text('Lend Requests')),
 
         actions: [
-          IconButton(onPressed: null, icon: const Icon(Icons.chat,color: Colors.white,)),
+          IconButton(onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomePage()
+              ),
+            );}, icon: const Icon(Icons.chat,color: Colors.white,)),
         ],
       ),
       body:FutureBuilder<QuerySnapshot>(

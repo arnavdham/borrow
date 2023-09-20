@@ -61,7 +61,7 @@ class _AdTileState extends State<AdTile> {
                 style: TextStyle(color: Colors.white),
               ),
               Text(
-                DateTime.now().toString(),
+                DateTime.now().hour.toString()+":"+DateTime.now().minute.toString(),
                 // widget.timestamp,
                 style: TextStyle(color: Colors.white),
               ),
