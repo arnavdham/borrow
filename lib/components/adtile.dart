@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:borrow/screens/chat_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class AdTile extends StatefulWidget {
@@ -29,12 +30,18 @@ class _AdTileState extends State<AdTile> {
   bool bookmarked = false;
 
   void openChat() {
+    List<String> userIds = [
+      FirebaseAuth.instance.currentUser!.uid,
+      widget.timestamp,
+    ];
+    userIds.sort();
+    String chatRoomId = userIds.join("_");
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ChatPage(
           receiveruserEmail: widget.uploaderEmail,
-          receiverUserID: widget.timestamp,
+          receiverUserID: chatRoomId,
         ),
       ),
     );
